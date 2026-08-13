@@ -9,7 +9,7 @@
 
 image:
   repository: ghcr.io/mattycska/kafka-demo
-  tag: "sha-767eaf4"
+  tag: "sha-80b077d"
   pullPolicy: IfNotPresent
 
 logLevel: INFO
