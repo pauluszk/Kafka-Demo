@@ -1,0 +1,77 @@
+name: Auto SemVer Tag
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  tag:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ github.token }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install semver
+        run: npm install semver
+
+      - name: Compute next version
+        id: version
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          latest=$(
+            git tag --sort=-v:refname |
+            grep -E '^v?[0-9]+\.[0-9]+\.[0-9]+$' |
+            head -n 1 || true
+          )
+
+          if [[ -z "$latest" ]]; then
+            latest="0.0.0"
+          fi
+
+          # Remove optional "v" prefix for semver
+          latest="${latest#v}"
+
+          echo "Latest version: $latest"
+
+          commit_message=$(git log -1 --pretty=%B)
+
+          if echo "$commit_message" | grep -q "#major"; then
+            next=$(npx semver -i major "$latest")
+          elif echo "$commit_message" | grep -q "#minor"; then
+            next=$(npx semver -i minor "$latest")
+          else
+            next=$(npx semver -i patch "$latest")
+          fi
+
+          echo "Next version: $next"
+          echo "next_tag=v$next" >> "$GITHUB_OUTPUT"
+
+      - name: Create and push tag
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          TAG="${{ steps.version.outputs.next_tag }}"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          echo "Creating tag $TAG"
+
+          git tag "$TAG"
+          git push origin "$TAG"
