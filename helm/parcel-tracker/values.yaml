@@ -9,7 +9,7 @@
 
 image:
   repository: ghcr.io/pauluszk/kafka-demo
-  tag: "v0.0.13"
+  tag: "v0.0.14"
   pullPolicy: IfNotPresent
 
 logLevel: INFO
