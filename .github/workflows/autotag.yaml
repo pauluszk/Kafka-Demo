@@ -72,6 +72,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           echo "Creating tag $TAG"
+      - name: Run CI
+        uses: ./.github/workflows/ci.yml
 
           git tag "$TAG"
           git push origin "$TAG"
