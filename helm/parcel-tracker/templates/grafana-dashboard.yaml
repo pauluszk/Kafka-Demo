@@ -9,13 +9,13 @@ metadata:
     grafana_dashboard: "1"
     {{- include "parcel-tracker.labels" . | nindent 4 }}
 data:
-  kafka-demo-dashboard.json: |-
+  kafka-kristof-dashboard.json: |-
     {
       "annotations": {"list": []},
       "editable": true,
       "graphTooltip": 1,
-      "title": "Kafka Demo — Posta Csomagkövető",
-      "uid": "kafka-demo",
+      "title": "Kafka Kristóf — Posta Csomagkövető",
+      "uid": "kafka-kristof",
       "tags": ["kafka", "redis", "demo", "posta"],
       "timezone": "browser",
       "schemaVersion": 39,
