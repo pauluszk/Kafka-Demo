@@ -4,7 +4,9 @@ on:
   push:
     branches:
       - main
-
+    paths-ignore:
+      - 'helm/**'
+      
 permissions:
   contents: write
 
