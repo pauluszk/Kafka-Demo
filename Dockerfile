@@ -10,7 +10,7 @@ FROM python:3.12-slim
 
 # Az org.opencontainers.image.source label köti a ghcr.io package-et a
 # GitHub repóhoz (publikus repo → a package is publikussá tehető).
-LABEL org.opencontainers.image.source="https://github.com/mattycska/Kafka" \
+LABEL org.opencontainers.image.source="https://github.com/pauluszk/Kafka-Demo.git" \
       org.opencontainers.image.description="Posta Csomagkövető — Kafka + Redis demó" \
       org.opencontainers.image.licenses="MIT"
 

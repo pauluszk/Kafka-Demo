@@ -74,7 +74,7 @@ A folyamat teljesen automatikus, **PAT nélkül** — minden a publikus repók
 és a beépített `GITHUB_TOKEN` képességeire épül:
 
 1. `git push` a `main`-re **ebbe a repóba** →
-2. GitHub Actions: tesztek → image build → push a `ghcr.io/mattycska/kafka-demo`-ra
+2. GitHub Actions: tesztek → image build → push a `ghcr.io/pauluszk/kafka-demo`-ra
    (tag = `sha-<commit>`, immutábilis) →
 3. a workflow **visszaírja** az új taget a `helm/parcel-tracker/values.yaml`-ba →
 4. az ArgoCD (a gitops repo `apps/kafka-demo.yaml` Application-je ezt a repót
