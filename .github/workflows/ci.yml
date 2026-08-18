@@ -11,7 +11,7 @@
 # A GITHUB_TOKEN-nel pusholt commit nem indít újabb workflow-futást, így
 # nincs végtelen ciklus (a [skip ci] csak biztonsági öv).
 name: CI
-
+#
 on:
   push:
     tags:
